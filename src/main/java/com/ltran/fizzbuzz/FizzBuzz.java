@@ -38,11 +38,15 @@ public class FizzBuzz {
 
     public static String calculateFizzBuzz(int number, Map<Integer, String> divisorsAndExpectedOutput) {
         StringBuilder result = new StringBuilder();
-        for (var e : divisorsAndExpectedOutput.entrySet()) {
-            if ((number % e.getKey()) == 0) {
-                result.append(e.getValue());
-            }
-        }
+
+        divisorsAndExpectedOutput.entrySet().stream()
+                .sorted(Map.Entry.comparingByKey())
+                .forEachOrdered(e -> {
+                    if ((number % e.getKey()) == 0) {
+                        result.append(e.getValue());
+                    }
+                });
+
         return result.length() == 0 ? String.valueOf(number) : result.toString();
     }
 

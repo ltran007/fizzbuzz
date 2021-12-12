@@ -4,6 +4,9 @@ import java.util.stream.IntStream;
 
 public class FizzBuzz {
 
+    public static final String FIZZ = "Fizz";
+    public static final String BUZZ = "Buzz";
+
     public static void main(String[] args) {
         fizzbuzz();
     }
@@ -16,11 +19,11 @@ public class FizzBuzz {
 
     public static String calculateFizzBuzz(int number) {
         if (((number % 3) == 0) && ((number % 5) == 0))
-            return "FizzBuzz";
+            return FIZZ + BUZZ;
         else if ((number % 3) == 0)
-            return "Fizz";
+            return FIZZ;
         else if ((number % 5) == 0)
-            return "Buzz";
+            return BUZZ;
         else
             return String.valueOf(number);
     }

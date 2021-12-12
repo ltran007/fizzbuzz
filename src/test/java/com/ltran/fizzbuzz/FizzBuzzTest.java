@@ -2,6 +2,8 @@ package com.ltran.fizzbuzz;
 
 import org.junit.Test;
 
+import java.util.Map;
+
 import static com.ltran.fizzbuzz.FizzBuzz.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -11,6 +13,7 @@ public class FizzBuzzTest {
     private static final int NUMBER_DIVISIBLE_BY_5 = 10;
     private static final int NUMBER_DIVISIBLE_BY_3_AND_BY_5 = 15;
     private static final int NUMBER_DIVISIBLE_BY_NEITHER = 11;
+    private static final Map<Integer, String> DIVISORS_AND_EXPECTED_OUTPUT = Map.of(3, FIZZ, 5, BUZZ);
 
     @Test
     public void returnFizzWhenDivisibleBy3() {
@@ -30,6 +33,19 @@ public class FizzBuzzTest {
     @Test
     public void returnNumberWhenDivisibleByNeither() {
         assertThat(calculateFizzBuzz(NUMBER_DIVISIBLE_BY_NEITHER)).isEqualTo(String.valueOf(NUMBER_DIVISIBLE_BY_NEITHER));
+    }
+
+    @Test
+    public void returnExpectedOutputWhenDivisibleByDivisor() {
+        assertThat(calculateFizzBuzz(NUMBER_DIVISIBLE_BY_3, DIVISORS_AND_EXPECTED_OUTPUT)).isEqualTo(FIZZ);
+        assertThat(calculateFizzBuzz(NUMBER_DIVISIBLE_BY_5, DIVISORS_AND_EXPECTED_OUTPUT)).isEqualTo(BUZZ);
+        assertThat(calculateFizzBuzz(NUMBER_DIVISIBLE_BY_3_AND_BY_5, DIVISORS_AND_EXPECTED_OUTPUT)).isEqualTo(FIZZ + BUZZ);
+    }
+
+    @Test
+    public void returnNumberWhenDivisibleByNoDivisor() {
+        assertThat(calculateFizzBuzz(NUMBER_DIVISIBLE_BY_NEITHER, DIVISORS_AND_EXPECTED_OUTPUT))
+                .isEqualTo(String.valueOf(NUMBER_DIVISIBLE_BY_NEITHER));
     }
 
 }

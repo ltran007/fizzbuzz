@@ -8,13 +8,13 @@ public class FizzBuzz {
         fizzbuzz();
     }
 
-    private static void fizzbuzz() {
+    public static void fizzbuzz() {
         IntStream.rangeClosed(1, 100)
                 .mapToObj(FizzBuzz::calculateFizzBuzz)
                 .forEach(System.out::println);
     }
 
-    private static String calculateFizzBuzz(int number) {
+    public static String calculateFizzBuzz(int number) {
         if (((number % 3) == 0) && ((number % 5) == 0))
             return "FizzBuzz";
         else if ((number % 3) == 0)
